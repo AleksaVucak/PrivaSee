@@ -50,23 +50,23 @@ EasyOCR is a lightweight optical character recognition (OCR) model that extracts
 PaddleOCR is an advanced OCR model built using the PaddlePaddle library in Python. This model works particularly well for very small or hard-to-read text and supports a wide range of languages. PaddleOCR uses deep learning techniques to detect text regions and predict bounding boxes. This multi-step process is crucial for detecting PHI within our data to ensure de-identification of sensitive information. Its use in our project was essential for identifying bounding boxes around small text found on walls, wording on badges and signs that may have included sensitive information.
 <img width="800" alt="Screenshot 2025-01-10 at 11 48 53 PM" src="https://github.com/user-attachments/assets/e159f7da-be04-4a82-a5de-8f877eaf713f" />
 
-# Steps for Model Execution and Results Processing
+## Steps for Model Execution and Results Processing
 
-## Step 1: Virtual Environment Setup
+### Step 1: Virtual Environment Setup
 - Each model requires its own virtual environment, created using Python's `venv` (refer to the ReadMe for instructions on how to do this, along with downloading all dependencies).
 - This ensures the isolation of dependencies, Python versions, and required packages for each model.
 - After the virtual environment is created, the Python `subprocess` module is used to run the model's Python code, ensuring that the correct environment is used for execution.
 
 ---
 
-## Step 2: Results Saving and Folder Structure
+### Step 2: Results Saving and Folder Structure
 - **Text File Results**: After each model is run, the results from each model (face detection and text detection) are saved in separate `.txt` files within designated folders.
   - **Face Model Results**: Bounding boxes for detected faces are saved as regular rectangular boxes, defined by the coordinates for the top-left and bottom-right corners.
   - **Text Model Results**: Bounding boxes for detected text are saved as polygonal boxes, defined by four coordinates representing each corner. This format allows for irregularly shaped text regions, such as text in unusual positions or on curved surfaces, to be accurately captured.
 
 ---
 
-## Step 3: Image Processing Functions
+### Step 3: Image Processing Functions
 - **Blurring Shapes**: This function obscures sensitive areas (such as faces or text) by applying a blur effect to the corresponding bounding boxes found in the detection results.
 - **Applying Bounding Boxes**: This function overlays the detected bounding boxes onto the original images to visually represent the results.
 - **Image Workflow**:
@@ -75,7 +75,7 @@ PaddleOCR is an advanced OCR model built using the PaddlePaddle library in Pytho
 
 ---
 
-## Step 4: Decision Layer
+### Step 4: Decision Layer
 - A decision layer can be implemented before applying the bounding boxes to filter results based on confidence scores to improve the reliability of the output.
 - This is used to refine or merge bounding boxes to improve clarity and accuracy, particularly in cases where multiple bounding boxes overlap or are too close together.
 
