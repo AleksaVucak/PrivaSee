@@ -83,6 +83,8 @@ PaddleOCR is an advanced OCR model built using the PaddlePaddle library in Pytho
 ## Results
 <img width="800" alt="Screenshot 2025-01-10 at 11 50 08 PM" src="https://github.com/user-attachments/assets/40611825-620b-42ae-9d25-4c50a482f29e" />
 
+# Blur Application & Detection
+
 ### Setup
 Requires python versions **3.8.10** and **3.7.4**, and the following instructions are for Windows only
 
