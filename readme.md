@@ -50,9 +50,6 @@ EasyOCR is a lightweight optical character recognition (OCR) model that extracts
 PaddleOCR is an advanced OCR model built using the PaddlePaddle library in Python. This model works particularly well for very small or hard-to-read text and supports a wide range of languages. PaddleOCR uses deep learning techniques to detect text regions and predict bounding boxes. This multi-step process is crucial for detecting PHI within our data to ensure de-identification of sensitive information. Its use in our project was essential for identifying bounding boxes around small text found on walls, wording on badges and signs that may have included sensitive information.
 <img width="800" alt="Screenshot 2025-01-10 at 11 48 53 PM" src="https://github.com/user-attachments/assets/e159f7da-be04-4a82-a5de-8f877eaf713f" />
 
-## Blur Applicaion/Detection
-
-
 ## Steps for Model Execution and Results Processing
 
 ### Step 1: Virtual Environment Setup
