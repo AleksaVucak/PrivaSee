@@ -1,6 +1,6 @@
 # Personal Health Information Blur
 
-## Face and Text detection
+## Face and Text Detection
 
 Patient information in healthcare is among the most sensitive types of data. This data
 includes protected health information (PHI) such as patient names, medical records, test results,
@@ -83,7 +83,30 @@ PaddleOCR is an advanced OCR model built using the PaddlePaddle library in Pytho
 ## Results
 <img width="800" alt="Screenshot 2025-01-10 at 11 50 08 PM" src="https://github.com/user-attachments/assets/40611825-620b-42ae-9d25-4c50a482f29e" />
 
-# Blur Application & Detection
+## Blur Application & Detection Algorithms
+We then shifted our focus to applying Gaussian blur uniformly across entire images. The blur was applied not only to the dataset of images we compiled but also to an additional dataset provided by the face and text detection team. Using OpenCV, we systematically applied increasing levels of Gaussian blur to these images, aiming to identify a threshold under which the face and text detection algorithms could still produce accurate and precise results. This process required close collaboration with the detection team as we tested and adjusted blur levels to ensure the data was adequately masked while maintaining the accuracy and precision of the face and text detection algorithms.
+
+To assess the level of blurriness or clarity in the processed images, we utilized three distinct blur detection methods: OpenCV’s blur detection algorithm, Fast Fourier Transform (FFT), and the Tenengrad Gradient method. Each method provided a quantitative return value that indicated the level of blurriness for each image in the dataset. By analyzing these values, we worked to identify a threshold in the detection algorithms’ outputs that could indicate whether face and text detection algorithms could still operate accurately. This collaborative approach allowed for a structured evaluation of how blur levels affected the precision of detection tools, ensuring that the applied blur was sufficient to obscure sensitive data while maintaining the algorithms’ ability to identify key elements effectively.
+
+## Blur Application Algorithm
+
+### Gaussian Blur
+Gaussian blur works by convolving an image with a Gaussian function. This creates a smoothing effect, as the Gaussian function gives more influence on nearby pixels while diminishing the influence of distant ones.
+![image](https://github.com/user-attachments/assets/5ab7271f-05c4-4fb5-a2c9-edbbf7acdb2e)
+
+## Blur Detection Algorithms
+
+### Blur Detection using OpenCV
+OpenCV’s blur detection method is based on analyzing the variance of the Laplacian operator applied to an image. The Laplacian operator measures the second derivative of pixel intensity, highlighting regions of rapid intensity change (e.g., edges). A low variance in the Laplacian result indicates that the image contains minimal high-frequency content, suggesting that it is blurry. Conversely, a high variance signifies that the image is sharp and contains significant edge details. The mathematical foundation of this technique involves the computation of the Laplacian matrix for the image.
+<img width="1050" alt="Screen Shot 2025-01-17 at 10 59 26 PM" src="https://github.com/user-attachments/assets/502a1c05-1859-49bf-8180-7303d4151dae" />
+
+### Fast Fourier Transform (FFT)
+In the frequency domain, each pixel represents a specific frequency and amplitude. The algorithm analyzes the distribution of these frequencies to assess sharpness. A sharp image will have significant contributions from high-frequency components, while a blurred image will primarily contain low-frequency components. The proportion of high to low frequencies provides a quantitative metric to evaluate the image's clarity.
+<img width="1055" alt="Screen Shot 2025-01-17 at 11 01 53 PM" src="https://github.com/user-attachments/assets/f8466b44-5ac7-4483-ba3c-45a196734c43" />
+
+### Tenengrad Gradient Method
+The Tenengrad method uses the Sobel operator, which calculates the intensity gradients in horizontal (Gx) and vertical (Gy) directions.
+<img width="1056" alt="Screen Shot 2025-01-17 at 11 04 25 PM" src="https://github.com/user-attachments/assets/14d9b6a2-de9f-42e8-a987-207d44cb8e95" />
 
 ### Setup
 Requires python versions **3.8.10** and **3.7.4**, and the following instructions are for Windows only
